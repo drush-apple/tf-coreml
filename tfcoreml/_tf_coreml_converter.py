@@ -532,7 +532,7 @@ def convert(tf_model_path,
             output_feature_names=None,
             input_name_shape_dict=None,
             image_input_names=None,
-            image_format=None,
+            tf_image_format=None,
             is_bgr=False,
             red_bias=0.0,
             green_bias=0.0,
@@ -576,7 +576,7 @@ def convert(tf_model_path,
       that can be treated as images by Core ML. All other inputs
       are treated as MultiArrays.
 
-  image_format: str
+  tf_image_format: str
       Optional. Specify either 'NCHW' or 'NHWC' to set or override the image format. Without this
       field set, the image format may be determined from the input model. Only valid for
       minimum_ios_deployment_target > '12'
@@ -684,7 +684,7 @@ def convert(tf_model_path,
                   inputs=input_name_shape_dict,
                   outputs=output_feature_names,
                   image_input_names=image_input_names,
-                  image_format=image_format,
+                  tf_image_format=tf_image_format,
                   is_bgr=is_bgr,
                   red_bias=red_bias,
                   green_bias=green_bias,
@@ -707,8 +707,8 @@ def convert(tf_model_path,
   if output_feature_names is None:
     raise ValueError('Output feature names must be provided.')
 
-  if image_format is not None:
-    warn('image_format not honored when minimum_ios_deployment_target < 13')
+  if tf_image_format is not None:
+    warn('tf_image_format not honored when minimum_ios_deployment_target < 13')
 
   return _convert_pb_to_mlmodel(
       tf_model_path,

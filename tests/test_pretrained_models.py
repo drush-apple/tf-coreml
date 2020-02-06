@@ -379,7 +379,7 @@ class TestModels(CorrectnessTest):
           green_bias = -1, 
           blue_bias = -1, 
           image_scale = 2.0/255.0,
-          image_format='NHWC') # Should not be used by legacy converter, expect warning.
+          tf_image_format='NHWC') # Should not be used by legacy converter, expect warning.
 
     #Test predictions on an image
     self._test_coreml_model_image_input(
@@ -437,7 +437,7 @@ class TestModels(CorrectnessTest):
         blue_bias = -1, 
         image_scale = 2.0/255.0,
         minimum_ios_deployment_target='13',
-        image_format='NHWC')
+        tf_image_format='NHWC')
 
     #Test predictions on an image
     self._test_coreml_model_image_input(
